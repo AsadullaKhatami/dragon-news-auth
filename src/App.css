@@ -1,0 +1,22 @@
+/* Flexbox keeps our track items aligned horizontally */
+.marquee-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: scroll-left 15s linear infinite;
+}
+/* The actual animation moving elements exactly by half of total track size */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Automatically applies to active NavLinks */
+a.active {
+  color: #403f3f;
+  font-weight: bold;
+}
