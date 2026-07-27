@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import "../App.css";
 import user from "../assets/user.png";
 
@@ -7,7 +7,7 @@ function Navbar() {
     
     return (
         <div className="w-11/12 mx-auto">
-            <div style={{padding: '0'}} className="navbar bg-base-100">
+            <div style={{padding: '0'}} className="navbar bg-transparent">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -32,7 +32,7 @@ function Navbar() {
                 </div>
                 <div className="navbar-end gap-3">
                     <img src={user} alt="" />
-                    <button className="btn btn-primary px-10">Login</button>
+                    <Link to='/auth/login' className="btn btn-primary px-10">Login</Link>
                 </div>
             </div>
         </div>
