@@ -4,6 +4,7 @@ import {
     FaEye,
     FaStar,
 } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
     const {
@@ -14,6 +15,7 @@ const NewsCard = ({ news }) => {
         tags,
         rating,
         total_view,
+        id
     } = news;
 
     const formattedDate = new Date(author.published_date).toLocaleDateString(
@@ -90,9 +92,9 @@ const NewsCard = ({ news }) => {
                         ? details.slice(0, 200) + "..."
                         : details}
 
-                    <span className="text-orange-500 font-semibold cursor-pointer ml-2">
+                    <Link to={`/news/${id}`} className="text-orange-500 font-semibold cursor-pointer ml-2">
                         Read More
-                    </span>
+                    </Link>
                 </p>
             </div>
 

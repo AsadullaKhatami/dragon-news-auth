@@ -5,10 +5,16 @@ import userIcon from "../assets/user.png";
 import { UserContext } from "../provider/AuthProvidr";
 
 function Navbar() {
-    const {user} = use(UserContext);
+    const {user, signout} = use(UserContext);
+    const handelLogout = () => {
+        signout();
+    }
     return (
         <div className="w-11/12 mx-auto">
             <div style={{padding: '0'}} className="navbar bg-transparent">
+                <div>
+                    <p>{user && user.email}</p>
+                </div>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -32,7 +38,10 @@ function Navbar() {
                 </div>
                 <div className="navbar-end gap-3">
                     <img src={userIcon} alt="" />
-                    <Link to='/auth/login' className="btn btn-primary px-10">Login</Link>
+                    {
+                        user ? <button onClick={handelLogout} className="btn btn-primary px-10">LogOut</button> : <Link to='/auth/login' className="btn btn-primary px-10">Login</Link>
+                    }
+                    
                 </div>
             </div>
         </div>
