@@ -1,10 +1,11 @@
-import React from "react";
+import React, { use, useContext } from "react";
 import { Link, NavLink } from "react-router";
 import "../App.css";
-import user from "../assets/user.png";
+import userIcon from "../assets/user.png";
+import { UserContext } from "../provider/AuthProvidr";
 
 function Navbar() {
-    
+    const {user} = use(UserContext);
     return (
         <div className="w-11/12 mx-auto">
             <div style={{padding: '0'}} className="navbar bg-transparent">
@@ -21,7 +22,6 @@ function Navbar() {
                             <li><NavLink to='/career'>Career</NavLink></li>
                         </ul>
                     </div>
-
                 </div>
                 <div className="navbar-center hidden md:flex">
                     <ul className="menu menu-horizontal px-1 text-accent">
@@ -31,7 +31,7 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className="navbar-end gap-3">
-                    <img src={user} alt="" />
+                    <img src={userIcon} alt="" />
                     <Link to='/auth/login' className="btn btn-primary px-10">Login</Link>
                 </div>
             </div>
