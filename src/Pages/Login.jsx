@@ -1,9 +1,13 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { UserContext } from "../provider/AuthProvidr";
 
 function Login(){
+    const [error, setError] = useState('');
     const {signin, setUser} = use(UserContext);
+    const Navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
     const handelSignin = (e) => {
         e.preventDefault();
         let email = e.target.email.value;
@@ -12,12 +16,14 @@ function Login(){
         signin(email, password).then((userCredential) => {
             // Signed in 
             setUser({ email, password });
-            console.log(userCredential)
+            console.log(userCredential);
+            Navigate(`${location.state ? location.state : "/"}`);
         })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                console.log(errorMessage, errorCode);
+                setError(errorCode);
             });
 
     }
@@ -32,6 +38,10 @@ function Login(){
 
                         <label className="label font-semibold">Password</label>
                         <input name="password" type="password" className="input" placeholder="Password" />
+
+                        {
+                            error && <p className="text-red-400">Invalid user name or password</p>
+                        }
 
                         <button type="submit" className="btn btn-neutral mt-4">Login</button>
                         <p className="text-center pt-5">

@@ -19,7 +19,7 @@ function CategoryNews(){
             setCategoryNews(filterednews);
         }
     },[data, id]);
-    console.log(id, categorynews);
+    // console.log(id, categorynews);
 
     return(
         <div>
