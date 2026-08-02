@@ -1,9 +1,10 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { UserContext } from "../provider/AuthProvidr";
 
 function Register(){
-    const {singup, setUser} = use(UserContext)
+    const { singup, setUser, updatedProfile } = use(UserContext);
+    const navigate = useNavigate();
     const handelSignup = (e) => {
         e.preventDefault();
         let target = e.target;
@@ -14,8 +15,18 @@ function Register(){
         // console.log({name, photourl, email, password});
         singup(email, password).then((userCredential) => {
             // Signed up 
-            setUser({ name, photourl, email, password });
-            console.log(userCredential);
+            const user = userCredential.user;
+            updatedProfile({ displayName: name, photoURL : photourl}).then(() => {
+                setUser(user);
+                console.log(user);
+                navigate('/');
+            }).catch((error) => {
+                // An error occurred
+                // ...
+                console.log(error);
+            });
+
+
         })
             .catch((error) => {
                 const errorCode = error.code;

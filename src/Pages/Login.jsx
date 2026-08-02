@@ -15,7 +15,8 @@ function Login(){
         console.log({email, password})
         signin(email, password).then((userCredential) => {
             // Signed in 
-            setUser({ email, password });
+            const user = userCredential.user;
+            setUser(user);
             console.log(userCredential);
             Navigate(`${location.state ? location.state : "/"}`);
         })

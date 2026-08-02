@@ -3,9 +3,11 @@ import { Link, NavLink } from "react-router";
 import "../App.css";
 import userIcon from "../assets/user.png";
 import { UserContext } from "../provider/AuthProvidr";
+import Tooltip from "./tooltip/ToolTip";
 
 function Navbar() {
     const {user, signout} = use(UserContext);
+    // console.log(user);
     const handelLogout = () => {
         signout();
     }
@@ -37,7 +39,8 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className="navbar-end gap-3">
-                    <img src={userIcon} alt="" />
+                    {/* <img title={user.displayName ? user.displayName : "useName"} className="w-12 rounded-full cursor-pointer" src={user.photoURL ? user.photoURL : userIcon} alt="" /> */}
+                    <img className="w-12 rounded-full cursor-pointer" title={user ? user.displayName : "userName"} src={user ? user.photoURL : userIcon} alt="" />
                     {
                         user ? <button onClick={handelLogout} className="btn btn-primary px-10">LogOut</button> : <Link to='/auth/login' className="btn btn-primary px-10">Login</Link>
                     }
