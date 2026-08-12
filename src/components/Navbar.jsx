@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router";
 import "../App.css";
 import userIcon from "../assets/user.png";
 import { UserContext } from "../provider/AuthProvidr";
-import Tooltip from "./tooltip/ToolTip";
 
 function Navbar() {
     const {user, signout} = use(UserContext);
